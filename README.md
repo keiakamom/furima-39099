@@ -4,7 +4,7 @@
 
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
-| nickname           | string | null: false, unique: true |
+| nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
 | last_name          | string | null: false               |
@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| user                | references | null: false, foreign_key: true |
-| name                | string     | null: false                    |
-| info                | text       | null: false                    |
-| category            | string     | null: false                    |
-| status              | string     | null: false                    |
-| shipping-fee        | string     | null: false                    |
-| shipping-prefecture | string     | null: false                    |
-| shipping-date       | string     | null: false                    |
-| price               | string     | null: false                    |
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| user                   | references | null: false, foreign_key: true |
+| name                   | string     | null: false                    |
+| info                   | text       | null: false                    |
+| category_id            | integer    | null: false                    |
+| status_id              | integer    | null: false                    |
+| shipping-fee_id        | integer    | null: false                    |
+| shipping-prefecture_id | integer    | null: false                    |
+| shipping-date_id       | integer    | null: false                    |
+| price                  | integer    | null: false                    |
 
 ### Association
 
@@ -53,15 +53,15 @@
 
 ## payments テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| order        | references | null: false, foreign_key: true | 
-| postcode     | string     | null: false                    |
-| prefecture   | string     | null: false                    |
-| city         | string     | null: false                    |
-| addresses    | string     | null: false                    |
-| building     | string     |                                |
-| phone_number | string     | null: false                    |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| order         | references | null: false, foreign_key: true | 
+| postcode      | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| addresses     | string     | null: false                    |
+| building      | string     |                                |
+| phone_number  | string     | null: false                    |
 
 ### Association
 

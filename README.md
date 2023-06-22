@@ -27,9 +27,9 @@
 | info                   | text       | null: false                    |
 | category_id            | integer    | null: false                    |
 | status_id              | integer    | null: false                    |
-| shipping-fee_id        | integer    | null: false                    |
-| shipping-prefecture_id | integer    | null: false                    |
-| shipping-date_id       | integer    | null: false                    |
+| shipping_fee_id        | integer    | null: false                    |
+| shipping_prefecture_id | integer    | null: false                    |
+| shipping_date_id       | integer    | null: false                    |
 | price                  | integer    | null: false                    |
 
 ### Association

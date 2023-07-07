@@ -53,26 +53,25 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Shipping date can't be blank"
       end
       it 'priceが空では登録できない' do
-        @item.price = ""
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
-      end      
+      end
       it 'priceが300円未満では登録できない' do
-        @item.price = "100"
+        @item.price = '100'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be greater than or equal to 300"
+        expect(@item.errors.full_messages).to include 'Price must be greater than or equal to 300'
       end
       it 'priceが9,999,999円以上では登録できない' do
-        @item.price = "10_000_000"
+        @item.price = '10_000_000'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be less than or equal to 9999999"
+        expect(@item.errors.full_messages).to include 'Price must be less than or equal to 9999999'
       end
       it 'priceは全角数値では登録できない' do
-        @item.price = "１00"
+        @item.price = '１00'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
     end
   end
 end
-  

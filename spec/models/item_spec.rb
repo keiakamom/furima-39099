@@ -12,6 +12,11 @@ RSpec.describe Item, type: :model do
       end
     end
     context '出品登録できないとき' do
+      it 'userが紐づいていないと登録できない'do
+        @item.user_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "User must exist"
+      end
       it 'imageが空では登録できない' do
         @item.image = nil
         @item.valid?
@@ -32,8 +37,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end
+      it 'categoryに「---」が選択されている場合は出品できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Category can't be blank"
+      end
       it 'statusが空では登録できない' do
         @item.status_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Status can't be blank"
+      end
+      it 'statusに「---」が選択されている場合は出品できない' do
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Status can't be blank"
       end
@@ -42,13 +57,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping fee can't be blank"
       end
+      it 'shipping_feeに「---」が選択されている場合は出品できない' do
+        @item.shipping_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Shipping fee can't be blank"
+      end
       it 'prefectureが空では登録できない' do
         @item.prefecture_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include "Prefecture can't be blank"
       end
+      it 'prefectureに「---」が選択されている場合は出品できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Prefecture can't be blank"
+      end
       it 'shipping_dateが空では登録できない' do
         @item.shipping_date_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Shipping date can't be blank"
+      end
+      it 'shipping_dateに「---」が選択されている場合は出品できない' do
+        @item.shipping_date_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping date can't be blank"
       end
@@ -63,7 +93,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include 'Price must be greater than or equal to 300'
       end
       it 'priceが9,999,999円以上では登録できない' do
-        @item.price = '10_000_000'
+        @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price must be less than or equal to 9999999'
       end

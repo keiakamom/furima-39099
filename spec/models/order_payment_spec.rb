@@ -32,9 +32,9 @@ RSpec.describe OrderPayment, type: :model do
         expect(@order_payment.errors.full_messages).to include "Postcode can't be blank"
       end
       it 'postcodeにハイフンがないと登録できない' do
-        @order_payment.postcode = 1234567
+        @order_payment.postcode = 1_234_567
         @order_payment.valid?
-        expect(@order_payment.errors.full_messages).to include "Postcode is invalid. Include hyphen(-)"
+        expect(@order_payment.errors.full_messages).to include 'Postcode is invalid. Include hyphen(-)'
       end
       it 'prefecture_idが空では登録できない' do
         @order_payment.prefecture_id = nil
@@ -62,26 +62,25 @@ RSpec.describe OrderPayment, type: :model do
         expect(@order_payment.errors.full_messages).to include "Phone number can't be blank"
       end
       it 'Phone_numberは半角数字以外では登録できない' do
-        @order_payment.phone_number = "０90-0000-0000"
+        @order_payment.phone_number = '０90-0000-0000'
         @order_payment.valid?
-        expect(@order_payment.errors.full_messages).to include "Phone number is invalid"
+        expect(@order_payment.errors.full_messages).to include 'Phone number is invalid'
       end
       it 'Phone_numberは10桁以下では登録できない' do
-        @order_payment.phone_number = "0123456789"
+        @order_payment.phone_number = '0123456789'
         @order_payment.valid?
-        expect(@order_payment.errors.full_messages).to include "Phone number is invalid"
+        expect(@order_payment.errors.full_messages).to include 'Phone number is invalid'
       end
       it 'Phone_numberは12桁以上では登録できない' do
-        @order_payment.phone_number = "0901234567890"
+        @order_payment.phone_number = '0901234567890'
         @order_payment.valid?
-        expect(@order_payment.errors.full_messages).to include "Phone number is invalid"
+        expect(@order_payment.errors.full_messages).to include 'Phone number is invalid'
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_payment.token = nil
         @order_payment.valid?
         expect(@order_payment.errors.full_messages).to include("Token can't be blank")
       end
     end
-
-  end 
-end 
+  end
+end

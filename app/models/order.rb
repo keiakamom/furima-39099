@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
-  # belings_to :user
-  # belongs_to :item
+  belongs_to :user
+  belongs_to :item
+  has_one :payment
+  attr_accessor :token
 end

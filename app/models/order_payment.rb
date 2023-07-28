@@ -9,7 +9,7 @@ class OrderPayment
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :adresses
-    validates :phone_number, format: { with: /\A0\d{10,11}\z/, message: 'is invalid' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
     validates :token
   end
 
